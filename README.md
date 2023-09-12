@@ -1,4 +1,2 @@
 # cyCodeBase
-An open source programming resource intended for graphics programmers.
-
-More details can be found on the [official website of cyCodeBase](http://www.cemyuksel.com/cyCodeBase/).
+Fork of Cem Yuksel's [cyCodeBase](https://github.com/benpm/cyCodeBase) with minor changes

@@ -1209,7 +1209,6 @@ inline void GL::CheckError( char const *sourcefile, int line, char const *call, 
 	while ( (error = glGetError()) != GL_NO_ERROR) {
 		*outStream << "OpenGL ERROR: " << sourcefile << " (line " << line << "): ";
 		if ( call ) *outStream << call << " triggered ";
-		*outStream << gluErrorString(error) << std::endl;
 	}
 }
 
@@ -1384,8 +1383,14 @@ void GLTexture<TEXTURE_TYPE>::SetFilteringMode(GLenum magnificationFilter, GLenu
 template <GLenum TEXTURE_TYPE>
 inline void GLRenderBuffer<TEXTURE_TYPE>::Delete()
 {
-	if ( framebufferID != CY_GL_INVALID_ID ) glDeleteFramebuffers (1,&framebufferID); framebufferID = CY_GL_INVALID_ID; 
-	if ( depthbufferID != CY_GL_INVALID_ID ) glDeleteRenderbuffers(1,&depthbufferID); depthbufferID = CY_GL_INVALID_ID; 
+	if ( framebufferID != CY_GL_INVALID_ID ) {
+		glDeleteFramebuffers (1,&framebufferID);
+	}
+	framebufferID = CY_GL_INVALID_ID; 
+	if ( depthbufferID != CY_GL_INVALID_ID ) {
+		glDeleteRenderbuffers(1,&depthbufferID);
+	}
+	depthbufferID = CY_GL_INVALID_ID; 
 	texture.Delete();
 }
 
